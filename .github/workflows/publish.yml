@@ -1,16 +1,16 @@
-name: Publish contract
+name: Publish package
 
 on:
   push:
     branches: [main]
-  workflow_dispatch:
+    paths:
+      - 'frontend/**'
+      - '.github/workflows/publish.yml'
 
 jobs:
   publish:
     uses: sneat-co/cicd/.github/workflows/npm-publish.yml@main
     with:
       working-directory: frontend
-      install-command: pnpm install --no-frozen-lockfile --ignore-scripts
       build-command: pnpm exec nx build ext-debtus-contract
-      publish-command: pnpm exec nx release publish --projects=ext-debtus-contract
-    secrets: inherit
+      publish-command: pnpm exec nx release --yes && git push --follow-tags
