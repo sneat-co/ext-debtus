@@ -48,6 +48,8 @@
     ],
     "projectsRelationship": "fixed",
     "version": {
+      "conventionalCommits": true,
+      "fallbackCurrentVersionResolver": "disk",
       "preVersionCommand": "pnpm exec nx run ext-debtus-contract:build",
       "versionActions": "@nx/js/src/release/version-actions"
     },
